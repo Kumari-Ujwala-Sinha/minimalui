@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import UserPage from './UserPage'
 
 
 function TabPanel(props) {
@@ -56,7 +57,7 @@ export default function ViewPage() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Factory Manager
+      <UserPage/>
       </TabPanel>
       <TabPanel value={value} index={1}>
       Work Partner

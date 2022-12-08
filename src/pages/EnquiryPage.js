@@ -34,6 +34,7 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
+  { id: 'srno', label: 'Sr No.', alignRight: false },
   { id: 'company_name', label: 'Company Name', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
   { id: 'total_enquiry', label: 'Total Enquiry', alignRight: false },
@@ -170,8 +171,8 @@ export default function EnquiryPage() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, company } = row;
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
+                    const { id,totalenquiry, name, company } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -183,15 +184,21 @@ export default function EnquiryPage() {
                         <TableCell component="th" scope="row" padding="none">
                           
                             
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
+                            <Typography variant="subtitle2" ml={2} noWrap>
+                              {index}
                             </Typography>
+                            
                          
                         </TableCell>
+                        <TableCell align="left">
+                        <Typography variant="subtitle2" noWrap>
+                              {name}
+                            </Typography>
+                            </TableCell>
 
                         <TableCell align="left">{company}</TableCell>
 
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{totalenquiry}</TableCell>
 
                        
 
