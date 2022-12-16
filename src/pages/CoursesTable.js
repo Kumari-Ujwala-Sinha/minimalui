@@ -21,6 +21,7 @@ import {
   IconButton,
   TableContainer,
   TablePagination,
+  Avatar
 } from '@mui/material';
 // components
 
@@ -35,11 +36,12 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'srno', label: 'Sr No.', alignRight: false },
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phone', label: 'Phone', alignRight: false },
-
-  { id: 'message', label: 'Message', alignRight: false },
+  { id: 'course_name', label: 'Course Name', alignRight: false },
+  { id: 'price', label: 'Price', alignRight: false },
+  { id: 'eligibility', label: 'Eligibility', alignRight: false },
+  { id: 'duration', label: 'Duration', alignRight: false },
+  { id: 'age', label: 'age', alignRight: false },
+  { id: 'image', label: 'image', alignRight: false },
   { id: '' }
 ];
 
@@ -74,7 +76,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function EnquiryPage() {
+export default function CoursesTable() {
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -146,13 +148,13 @@ export default function EnquiryPage() {
   return (
     <>
       <Helmet>
-        <title> Enquiry | Minimal UI </title>
+        <title> Courses | Minimal UI </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Enquiry
+            Courses
           </Typography>
           
         </Stack>
@@ -174,7 +176,7 @@ export default function EnquiryPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
-                    const { id,totalenquiry, name, company } = row;
+                    const { id,totalenquiry, name, avatarUrl } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -198,11 +200,17 @@ export default function EnquiryPage() {
                             </Typography>
                             </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
-
+                            <TableCell align="left">{totalenquiry}</TableCell>
+                            <TableCell align="left">{totalenquiry}</TableCell>
+                            <TableCell align="left">{totalenquiry}</TableCell>
 
                         <TableCell align="left">{totalenquiry}</TableCell>
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell component="th" scope="row" padding="none">
+                          <Stack direction="row" alignItems="center" spacing={2}>
+                            <Avatar alt={name} src={avatarUrl} />
+                           
+                          </Stack>
+                        </TableCell>
 
                        
 

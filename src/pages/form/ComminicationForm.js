@@ -14,7 +14,7 @@ import './styles.css';
 
 
 
-export default function Communication() {
+export default function CommunicationForm() {
   const [age, setAge] = useState('');
  
   

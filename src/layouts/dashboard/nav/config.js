@@ -12,35 +12,37 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
+    title: 'homebanner',
+    path: '/dashboard/homebanner',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'courses',
+    path: '/dashboard/courses',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'shop',
+    path: '/dashboard/shop',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'testimonial',
+    path: '/dashboard/testimonial',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'user',
     path: '/dashboard/user',
     icon: icon('ic_user'),
   },
-  {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
-  },
-  {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: icon('ic_blog'),
-  },
+  
   {
     title: 'enquiry',
     path: '/dashboard/enquiry',
     icon: icon('ic_user'),
   },
-  {
-    title: 'users',
-    path: '/dashboard/users',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'communication',
-    path: '/dashboard/communication',
-    icon: icon('ic_user'),
-  },
+
   {
     title: 'login',
     path: '/login',

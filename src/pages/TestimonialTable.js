@@ -35,11 +35,9 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'srno', label: 'Sr No.', alignRight: false },
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phone', label: 'Phone', alignRight: false },
-
-  { id: 'message', label: 'Message', alignRight: false },
+  { id: 'name', label: ' Name', alignRight: false },
+  { id: 'designation', label: 'Designation', alignRight: false },
+  { id: 'testimonial', label: 'Testimonial', alignRight: false },
   { id: '' }
 ];
 
@@ -74,7 +72,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function EnquiryPage() {
+export default function TestimonialTable() {
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -146,13 +144,13 @@ export default function EnquiryPage() {
   return (
     <>
       <Helmet>
-        <title> Enquiry | Minimal UI </title>
+        <title> Testimonial | Minimal UI </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Enquiry
+            Testimonial
           </Typography>
           
         </Stack>
@@ -174,7 +172,7 @@ export default function EnquiryPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
-                    const { id,totalenquiry, name, company } = row;
+                    const { id, name, company } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -200,8 +198,6 @@ export default function EnquiryPage() {
 
                         <TableCell align="left">{company}</TableCell>
 
-
-                        <TableCell align="left">{totalenquiry}</TableCell>
                         <TableCell align="left">{company}</TableCell>
 
                        

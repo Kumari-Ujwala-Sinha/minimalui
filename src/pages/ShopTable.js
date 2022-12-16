@@ -35,11 +35,10 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'srno', label: 'Sr No.', alignRight: false },
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phone', label: 'Phone', alignRight: false },
-
-  { id: 'message', label: 'Message', alignRight: false },
+  { id: 'product_name', label: 'Product Name', alignRight: false },
+  { id: 'offer_price', label: 'Offer Price', alignRight: false },
+  { id: 'actual_price', label: 'Actual Price', alignRight: false },
+  { id: 'product_desc', label: 'Description', alignRight: false },
   { id: '' }
 ];
 
@@ -74,7 +73,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function EnquiryPage() {
+export default function ShopTable() {
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -146,13 +145,13 @@ export default function EnquiryPage() {
   return (
     <>
       <Helmet>
-        <title> Enquiry | Minimal UI </title>
+        <title> Shop | Minimal UI </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Enquiry
+            Shop
           </Typography>
           
         </Stack>
@@ -197,12 +196,12 @@ export default function EnquiryPage() {
                               {name}
                             </Typography>
                             </TableCell>
+                            <TableCell align="left">{totalenquiry}</TableCell>
+                            <TableCell align="left">{totalenquiry}</TableCell>
 
                         <TableCell align="left">{company}</TableCell>
 
-
-                        <TableCell align="left">{totalenquiry}</TableCell>
-                        <TableCell align="left">{company}</TableCell>
+                        
 
                        
 
