@@ -78,9 +78,9 @@ export default function TestimonialForm() {
         }
         
       
-        <Grid container spacing={2}>
+        <Grid container >
     <Grid item xs={6}> 
-        <Button fullWidth variant="contained">Submit</Button></Grid></Grid>
+        <Button fullWidth variant="contained" style={{  height: 50 }}>Submit</Button></Grid></Grid>
         
       
       </Stack>

@@ -62,11 +62,11 @@ export default function CoursesForm() {
          <Grid container spacing={2}>
     <Grid item xs={6}> 
     <Button fullWidth style={{border: '2px dashed'}}  component="label">
-    <Icon icon="material-symbols:upload-rounded" width="24" height="24" />Upload Image
+    <Icon icon="material-symbols:upload-rounded" width="34" height="34" />Upload Image
         <input hidden accept="image/*" type="file" onChange={handleImageChange}/>
       </Button></Grid>
       <Grid item xs={6}> 
-      <Button fullWidth variant="contained">Submit</Button></Grid>
+      <Button fullWidth variant="contained" style={{  height: 50 }}>Submit</Button></Grid>
       </Grid>
     
     
