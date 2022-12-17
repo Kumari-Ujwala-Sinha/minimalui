@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {TextField,Stack,Button } from '@mui/material';
-import Badge from '@mui/material/Badge';
+
 import './styles.css';
 
 
@@ -83,9 +83,9 @@ export default function Communication() {
         <input hidden accept="image/*" multiple type="file" onChange={handleImageChange}/>
       </Button>
     
-    <div className="result">{selectedFiles && selectedFiles.map(photo=><Badge badgeContent={"x"}  key={photo} color="primary">
-      <img className='badgeimg' src={photo} alt=""  />
-      </Badge>)}</div>
+    <div className="result">{selectedFiles && selectedFiles.map(photo=>
+      <img className='badgeimg' src={photo} alt="" key={photo}  />
+      )}</div>
         <Button variant="contained">Submit</Button>
         
       

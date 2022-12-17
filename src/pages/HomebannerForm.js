@@ -4,10 +4,12 @@ import React, { useState} from 'react';
 
 
 import Box from '@mui/material/Box';
+import { Icon } from '@iconify/react';
 
 
 
 import {Stack,Button } from '@mui/material';
+
 
 import './styles.css';
 
@@ -38,21 +40,21 @@ export default function HomebannerForm() {
   
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-        <Stack spacing={3}>
+    <Box  sx={{ minWidth: 120 }}>
+        <Stack spacing={4}>
      
-       
-        
-    <Button variant="contained" component="label">
-        Upload Image
-        <input hidden accept="image/*" multiple type="file" onChange={handleImageChange}/>
-      </Button>
-    
     <div className="result">{selectedFiles && selectedFiles.map(photo=>
       <img className='badgeimg' src={photo} alt="" key={photo}  />
       )}</div>
-        <Button variant="contained">Submit</Button>
-        
+       
+        <Box display="flex" justifyContent="space-between">  
+    <Button fullwidth style={{border: '2px dashed', width: 500, height: 50 }} size="large"  component="label">
+    <Icon icon="material-symbols:upload-rounded" width="34" height="34" /> Upload Image
+        <input hidden accept="image/*" multiple type="file" onChange={handleImageChange}/>
+      </Button>
+    
+        <Button style={{ width: 500, height: 50 }} size="large" variant="contained">Submit</Button>
+        </Box>
       
       </Stack>
 

@@ -4,12 +4,15 @@ import JoditEditor from 'jodit-react';
 
 
 import Box from '@mui/material/Box';
+import { Icon } from '@iconify/react';
+
+import Grid from '@mui/material/Grid';
 
 
 
 
 import {TextField,Stack,Button } from '@mui/material';
-import Badge from '@mui/material/Badge';
+
 import './styles.css';
 
 
@@ -58,15 +61,21 @@ export default function ShopForm() {
 			onBlur={newContent => {setContent(newContent)}}
       onChange={newContent=>{console.log(newContent)}}
 		/>
-    <Button variant="contained" component="label">
-        Upload Product Image
-        <input hidden accept="image/*" multiple type="file" onChange={handleImageChange}/>
-      </Button>
     
-    <div className="result">{selectedFiles && selectedFiles.map(photo=><Badge badgeContent={"x"}  key={photo} color="primary">
-      <img className='badgeimg' src={photo} alt=""  />
-      </Badge>)}</div>
-        <Button variant="contained">Submit</Button>
+    
+    <div className="result">{selectedFiles && selectedFiles.map(photo=>
+      <img className='badgeimg' src={photo} alt="" key={photo} />
+      )}</div>
+       
+        <Grid container spacing={2}>
+    <Grid item xs={6}> 
+    <Button fullWidth style={{border: '2px dashed'}}  component="label">
+    <Icon icon="material-symbols:upload-rounded" width="24" height="24" />Upload Image
+        <input hidden accept="image/*" type="file" onChange={handleImageChange}/>
+      </Button></Grid>
+      <Grid item xs={6}> 
+      <Button fullWidth variant="contained">Submit</Button></Grid>
+      </Grid>
         
       
       </Stack>
