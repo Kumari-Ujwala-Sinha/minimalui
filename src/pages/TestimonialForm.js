@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import JoditEditor from 'jodit-react';
 
-
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -45,9 +45,12 @@ export default function TestimonialForm() {
   return (
     <Box sx={{ minWidth: 120 }}>
         <Stack spacing={3}>
-        <TextField fullWidth  name="name" label="Name" mt={4} />
-        <TextField fullWidth  name="designation" label="Designation" mt={4} />
+        <Grid container spacing={2}>
+    <Grid item xs={4}> <TextField fullWidth  name="name" label="Name" mt={4} /></Grid>
+    <Grid item xs={4}><TextField fullWidth  name="designation" label="Designation" mt={4} /></Grid>
+    <Grid item xs={4}>
       <FormControl fullWidth>
+      
       
         <InputLabel id="demo-simple-select-label">Testimonial Type</InputLabel>
         <Select
@@ -61,7 +64,8 @@ export default function TestimonialForm() {
           <MenuItem value="video">Video</MenuItem>
           
         </Select>
-        </FormControl>
+        </FormControl></Grid>
+    </Grid>
         {message && <JoditEditor
 			ref={editor}
 			value={content}
@@ -74,8 +78,9 @@ export default function TestimonialForm() {
         }
         
       
-     
-        <Button variant="contained">Submit</Button>
+        <Grid container spacing={2}>
+    <Grid item xs={6}> 
+        <Button fullWidth variant="contained">Submit</Button></Grid></Grid>
         
       
       </Stack>
