@@ -23,13 +23,14 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
+import { useSelector} from 'react-redux';
 
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { UserListHead } from '../sections/@dashboard/user';
 // mock
-import USERLIST from '../_mock/user';
+
 
 // ----------------------------------------------------------------------
 
@@ -86,7 +87,7 @@ export default function ShopTable() {
 
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  const shops = useSelector(state => state.shop.shops);
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -103,7 +104,7 @@ export default function ShopTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = shops.map((n) => n.productName);
       setSelected(newSelecteds);
       return;
     }
@@ -136,9 +137,9 @@ export default function ShopTable() {
 
  
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - shops.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy));
+  const filteredUsers = applySortFilter(shops, getComparator(order, orderBy));
 
   const isNotFound = !filteredUsers.length 
 
@@ -166,40 +167,40 @@ export default function ShopTable() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={shops.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
-                    const { id,totalenquiry, name, company } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                    const { id,productName, actualPrice, offerPrice,productDescription } = row;
+                    const selectedUser = selected.indexOf(productName) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, productName)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           
                             
                             <Typography variant="subtitle2" ml={2} noWrap>
-                              {index+1}
+                              {id}
                             </Typography>
                             
                          
                         </TableCell>
                         <TableCell align="left">
                         <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {productName}
                             </Typography>
                             </TableCell>
-                            <TableCell align="left">{totalenquiry}</TableCell>
-                            <TableCell align="left">{totalenquiry}</TableCell>
+                            <TableCell align="left">{actualPrice}</TableCell>
+                            <TableCell align="left">{offerPrice}</TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{productDescription}</TableCell>
 
                         
 
@@ -252,7 +253,7 @@ export default function ShopTable() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={shops.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

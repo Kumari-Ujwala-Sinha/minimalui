@@ -23,13 +23,13 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
+import { useSelector} from 'react-redux';
 
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { UserListHead } from '../sections/@dashboard/user';
-// mock
-import USERLIST from '../_mock/user';
+
 
 // ----------------------------------------------------------------------
 
@@ -85,6 +85,7 @@ export default function TestimonialTable() {
 
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const testimoniess = useSelector(state => state.testimonial.testimonials);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -102,7 +103,7 @@ export default function TestimonialTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = testimoniess.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -135,9 +136,9 @@ export default function TestimonialTable() {
 
  
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - testimoniess.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy));
+  const filteredUsers = applySortFilter(testimoniess, getComparator(order, orderBy));
 
   const isNotFound = !filteredUsers.length 
 
@@ -165,14 +166,14 @@ export default function TestimonialTable() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={testimoniess.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
-                    const { id, name, company } = row;
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                    const { id, name, designation,testimoni } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -185,7 +186,7 @@ export default function TestimonialTable() {
                           
                             
                             <Typography variant="subtitle2" ml={2} noWrap>
-                              {index+1}
+                              {id}
                             </Typography>
                             
                          
@@ -196,9 +197,9 @@ export default function TestimonialTable() {
                             </Typography>
                             </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{designation}</TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{testimoni}</TableCell>
 
                        
 
@@ -249,7 +250,7 @@ export default function TestimonialTable() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={testimoniess.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

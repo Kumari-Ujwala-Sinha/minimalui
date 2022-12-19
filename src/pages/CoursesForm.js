@@ -19,8 +19,10 @@ export default function CoursesForm() {
  const [image, setImage] = useState();
  const shops = useSelector(state => state.shop.shops);
  const courses = useSelector(state => state.course.courses);
+ const testimoniess = useSelector(state => state.testimonial.testimonials);
  console.log(shops)
  console.log(courses)
+ console.log(testimoniess)
 
  const handleImageFile = (e) => {
    setImage(e.target.files[0], '$$$$');

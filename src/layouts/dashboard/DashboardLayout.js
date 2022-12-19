@@ -8,6 +8,7 @@ import Header from './header';
 import Nav from './nav';
 import { getCourses } from '../../actions/master/course';
 import { getShops } from '../../actions/master/shop';
+import { getTestimonials } from '../../actions/master/testimonial';
 
 // ----------------------------------------------------------------------
 
@@ -42,6 +43,7 @@ export default function DashboardLayout() {
     const getReduxData = async () => {
         await dispatch(getCourses());
         await dispatch(getShops());
+        await dispatch(getTestimonials());
         
     };
     getReduxData();
