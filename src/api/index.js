@@ -11,3 +11,5 @@ export const addShop = (productInfo) => api.post(`/add-products`, productInfo);
 export const getShop = () => api.get(`/products`);
 export const addTestimonial = (testimonialInfo) => api.post(`/add-testimonies`, testimonialInfo);
 export const getTestimonial = () => api.get(`/testimonies`);
+export const addHomebanner = (homebannerInfo) => api.post(`/add-homebanners`, homebannerInfo);
+export const getHomebanner = () => api.get(`/homebanners`);

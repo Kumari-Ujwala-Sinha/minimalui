@@ -6,3 +6,6 @@ export const GET_COURSE = 'GET_COURSE';
 
 export const ADD_TESTIMONIAL = 'ADD_TESTIMONIAL';
 export const GET_TESTIMONIAL = 'GET_TESTIMONIAL';
+
+export const ADD_HOMEBANNER = 'ADD_HOMEBANNER';
+export const GET_HOMEBANNER = 'GET_HOMEBANNER';
