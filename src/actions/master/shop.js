@@ -12,6 +12,7 @@ export const getShops = () => async (dispatch) => {
 
 export const addShop = (shop) => async (dispatch) => {
     try {
+        console.log(shop)
         const { data } = await api.addShop(shop);
         dispatch({ type: ADD_SHOP, payload: data });
     } catch (error) {
