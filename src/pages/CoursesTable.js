@@ -2,14 +2,14 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
+
 // @mui
 import {
   Card,
   Table,
   Stack,
   Paper,
-  Button,
+ 
   Popover,
   Checkbox,
   TableRow,
@@ -24,13 +24,13 @@ import {
   Avatar
 } from '@mui/material';
 // components
-
+import { useSelector} from 'react-redux';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { UserListHead } from '../sections/@dashboard/user';
-// mock
-import USERLIST from '../_mock/user';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -89,6 +89,7 @@ export default function CoursesTable() {
 
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const courses = useSelector(state => state.course.courses);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -106,7 +107,7 @@ export default function CoursesTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = courses.map((n) => n.courseName);
       setSelected(newSelecteds);
       return;
     }
@@ -139,9 +140,9 @@ export default function CoursesTable() {
 
  
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - courses.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy));
+  const filteredUsers = applySortFilter(courses, getComparator(order, orderBy));
 
   const isNotFound = !filteredUsers.length 
 
@@ -169,45 +170,45 @@ export default function CoursesTable() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={courses.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => {
-                    const { id,totalenquiry, name, avatarUrl } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                    const { id,courseName, price,eligibility,duration,age, image } = row;
+                    const selectedUser = selected.indexOf(courseName) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, courseName)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           
                             
                             <Typography variant="subtitle2" ml={2} noWrap>
-                              {index+1}
+                              {id}
                             </Typography>
                             
                          
                         </TableCell>
                         <TableCell align="left">
                         <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {courseName}
                             </Typography>
                             </TableCell>
 
-                            <TableCell align="left">{totalenquiry}</TableCell>
-                            <TableCell align="left">{totalenquiry}</TableCell>
-                            <TableCell align="left">{totalenquiry}</TableCell>
+                            <TableCell align="left">{price}</TableCell>
+                            <TableCell align="left">{eligibility}</TableCell>
+                            <TableCell align="left">{duration}</TableCell>
 
-                        <TableCell align="left">{totalenquiry}</TableCell>
+                        <TableCell align="left">{age}</TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={courseName} src={image} />
                            
                           </Stack>
                         </TableCell>
@@ -261,24 +262,14 @@ export default function CoursesTable() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={courses.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Card>
-        <Stack direction="row" alignItems="center" mt={3}>
-          
-          
-          <NavLink to="/dashboard/view" style={{ textDecoration: 'none' }}>
-          <Button variant="contained" size="lg" m={5} >
-            View
-            </Button>
-            </NavLink>
-         
-          
-        </Stack>
+        
       </Container>
 
       <Popover

@@ -2,14 +2,14 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
+
 // @mui
 import {
   Card,
   Table,
   Stack,
   Paper,
-  Button,
+ 
   Popover,
   Checkbox,
   TableRow,
@@ -256,17 +256,7 @@ export default function TestimonialTable() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Card>
-        <Stack direction="row" alignItems="center" mt={3}>
-          
-          
-          <NavLink to="/dashboard/view" style={{ textDecoration: 'none' }}>
-          <Button variant="contained" size="lg" m={5} >
-            View
-            </Button>
-            </NavLink>
-         
-          
-        </Stack>
+        
       </Container>
 
       <Popover

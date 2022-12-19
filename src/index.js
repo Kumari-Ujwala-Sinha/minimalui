@@ -3,8 +3,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
 import {reducers} from './reducers/index';
+
 
 
 //
@@ -13,7 +16,9 @@ import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
 // ----------------------------------------------------------------------
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const initialState={}
+const store = createStore(reducers,initialState, composeWithDevTools(applyMiddleware(thunk)));
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

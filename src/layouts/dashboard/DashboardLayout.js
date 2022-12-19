@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
 //
 import Header from './header';
 import Nav from './nav';
+import { getCourses } from '../../actions/master/course';
+import { getShops } from '../../actions/master/shop';
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +37,15 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getReduxData = async () => {
+        await dispatch(getCourses());
+        await dispatch(getShops());
+        
+    };
+    getReduxData();
+}, [dispatch]);
 
   return (
     <StyledRoot>

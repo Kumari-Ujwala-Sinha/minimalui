@@ -4,7 +4,7 @@ import {TextField,Stack,Button } from '@mui/material';
 import { Icon } from '@iconify/react';
 import './styles.css';
 import Grid from '@mui/material/Grid';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector} from 'react-redux';
 import { addCourse } from '../actions/master/course';
 
 
@@ -17,6 +17,10 @@ export default function CoursesForm() {
  const[eligibility,seteligibility]=useState("")
  const[duration,setduration]=useState("")
  const [image, setImage] = useState();
+ const shops = useSelector(state => state.shop.shops);
+ const courses = useSelector(state => state.course.courses);
+ console.log(shops)
+ console.log(courses)
 
  const handleImageFile = (e) => {
    setImage(e.target.files[0], '$$$$');
